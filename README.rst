@@ -31,6 +31,15 @@ Add the following to your theme's templates/article.html, after {{ article.conte
 
   <iframe id="comments" src="{{article.microblog_url}}"></iframe> 
 
+Also add the following to the main css, usually static/css/main.css::
+
+  iframe#comments {
+    margin-top: 2em;
+    border: 0;
+    width: 100%;
+    height: 40em;
+  }
+
 On the first run it will ask for authentication.
 
 Managing the plugin
