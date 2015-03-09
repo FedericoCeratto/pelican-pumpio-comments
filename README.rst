@@ -32,3 +32,28 @@ Add the following to your theme's templates/article.html, after {{ article.conte
   <iframe id="comments" src="{{article.microblog_url}}"></iframe> 
 
 On the first run it will ask for authentication.
+
+Managing the plugin
+-------------------
+
+Authentication data and a list of published notices is stored in a tiny file-based database.
+You can run the plugin from command line as::
+  ./pelican-pumpio-comments/pumpio_comments.py <action> <parameter>
+  
+show-auth
+  Show authentication data
+  
+list-notices
+  List known published notices
+  
+del-notice <notice_name>
+  Delete a notice from the database. If the original post is still present, the next time Pelican is run a new notice will be published.
+  
+delete-database
+  Flush the whole database: authentication and notices. Useful if you want to move to a new microblogging account.
+
+
+
+
+
+
