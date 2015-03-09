@@ -1,0 +1,8 @@
+*.asc
+*.priv
+*.pyc
+*.swp
+*~
+.coverage
+build
+cover
