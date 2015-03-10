@@ -100,9 +100,10 @@ def post_microblog_notice(tpl=DEFAULT_NOTICE_TPL, **kw):
     """Post a notice on the microblogging service
     """
     n = pump.Note(tpl.format(**kw))
+    n.to = pump.Public
     print "Posting %r" % n.content
     n.send()
-    print "Posted as %r" % n.id
+    print "Posted as %s" % n.id
     return n.id.encode('utf-8')
 
 
