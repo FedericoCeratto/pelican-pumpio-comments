@@ -122,7 +122,8 @@ def _micro_blog(instance):
     rel_url = rel_url.encode('utf-8')
     url = "%s/%s" % (instance.get_siteurl(), rel_url)
 
-    if rel_url not in db:
+    db_key = "notice:%s" % rel_url
+    if db_key not in db:
         # Newly created or published item: post a notice
         notice_tpl = instance.settings.get('MICROBLOGGING_NOTICE_TPL',
                                            DEFAULT_NOTICE_TPL)
@@ -133,10 +134,10 @@ def _micro_blog(instance):
             tpl=notice_tpl,
             url=url,
         )
-        db["notice:%s" % rel_url] = notice_url
+        db[db_key] = notice_url
 
     else:
-        notice_url = db["notice:%s" % rel_url]
+        notice_url = db[db_key]
 
     # TODO: fix this hack
     nickname = pump.nickname
