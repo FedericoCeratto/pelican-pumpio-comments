@@ -24,12 +24,15 @@ Usage
 Configure your pelicanconf.py with::
 
   PLUGINS = ['pelican-pumpio-comments']
-  MICROBLOGGING_WEBFINGER='<nickname>@identi.ca' 
+  MICROBLOGGING_WEBFINGER='<nickname>@identi.ca'
 
+Optionally you can specify a notice template, for example::
+
+  MICROBLOGGING_NOTICE_TPL="""{title}<br/>{content}<br/><a href="{url}">{slug}</a>"""
 
 Add the following to your theme's templates/article.html, after {{ article.content }}::
 
-  <iframe id="comments" src="{{article.microblog_url}}"></iframe> 
+  <iframe id="comments" src="{{article.microblog_url}}"></iframe>
 
 Also add the following to the main css, usually static/css/main.css::
 

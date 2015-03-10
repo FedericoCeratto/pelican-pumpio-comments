@@ -96,10 +96,10 @@ def connect(db, webfinger):
     return pump
 
 
-def post_microblog_notice(title=None, url=None, tpl=DEFAULT_NOTICE_TPL):
+def post_microblog_notice(tpl=DEFAULT_NOTICE_TPL, **kw):
     """Post a notice on the microblogging service
     """
-    n = pump.Note(tpl.format(title=title, url=url))
+    n = pump.Note(tpl.format(**kw))
     print "Posting %r" % n.content
     n.send()
     print "Posted as %r" % n.id
@@ -125,8 +125,13 @@ def _micro_blog(instance):
         # Newly created or published item: post a notice
         notice_tpl = instance.settings.get('MICROBLOGGING_NOTICE_TPL',
                                            DEFAULT_NOTICE_TPL)
-        notice_url = post_microblog_notice(title=instance.title, url=url,
-                                           tpl=notice_tpl)
+        notice_url = post_microblog_notice(
+            content=instance.content,
+            slug=instance.slug,
+            title=instance.title,
+            tpl=notice_tpl,
+            url=url,
+        )
         db["notice:%s" % rel_url] = notice_url
 
     else:
